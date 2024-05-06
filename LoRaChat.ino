@@ -13,9 +13,9 @@ SSD1306Wire display(0x3c, 4, 15);
 
 // definitions
 //SPI defs for LoRa radio
-#define SS 18
-#define RST 14
-#define DI0 26
+#define SS 33
+#define RST -1
+#define DI0 32
 // #define BAND 429E6
 
 // LoRa Settings
@@ -27,10 +27,10 @@ SSD1306Wire display(0x3c, 4, 15);
 #define preambleLength 8
 
 // we also need the following config data:
-// GPIO5 — SX1278’s SCK
-// GPIO19 — SX1278’s MISO
-// GPIO27 — SX1278’s MOSI
-// GPIO18 — SX1278’s CS
+// GPIO47 — SX1278’s SCK
+// GPIO45 — SX1278’s MISO
+// GPIO48 — SX1278’s MOSI
+// GPIO21 — SX1278’s CS
 // GPIO14 — SX1278’s RESET
 // GPIO26 — SX1278’s IRQ(Interrupt Request)
 
@@ -75,7 +75,7 @@ void setup() {
   display.drawString(5, 5, "LoRa Chat Node");
   display.display();
 
-  SPI.begin(5, 19, 27, 18);
+  SPI.begin(0, 36, 26, 33);
   LoRa.setPins(SS, RST, DI0);
   Serial.println("LoRa Chat Node");
   if (!LoRa.begin(BAND)) {
@@ -182,4 +182,3 @@ void loop() {
     }
   }
 }
-
